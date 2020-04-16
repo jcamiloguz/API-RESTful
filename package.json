@@ -1,0 +1,14 @@
+{
+  "name": "practica8",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js"
+  },
+  "author": "Juan Camilo Guzman",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

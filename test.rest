@@ -1,0 +1,86 @@
+### Declaración de variables
+@hostname = 127.0.0.1
+@port = 3000
+@host = {{hostname}}:{{port}}
+@protocol = HTTP/1.1
+@contentType = application/json
+@version = 1
+ 
+### GET Lee todos los sensores almacenados
+GET http://{{host}}/sensores {{protocol}}
+Accept: {{contentType}}; version={{version}}
+ 
+### POST Crea un nuevo sensor
+### -> Observe que el id del objeto lo asigna la API y lo indica en el objeto JSON de respuesta
+POST http://{{host}}/sensores {{protocol}}
+Content-Type: {{contentType}}
+Accept: {{contentType}}; version={{version}}
+
+{
+   "nombre": "Sensor de Temperatura - UAO - Biblioteca"
+}
+###
+@sensorId = 1
+
+###
+###
+@medicionid = 0
+ 
+### GET Lee el sensor con id = sensorId
+GET http://{{host}}/sensores/{{sensorId}} {{protocol}}
+Accept: {{contentType}}; version={{version}}
+ 
+
+###
+ 
+### POST  Crea un nueva medición en el sensor con id = sensorId
+### -> Observe que el id del objeto lo asigna la API y lo indica en el objeto JSON de respuesta
+POST http://{{host}}/sensores/{{sensorId}}/mediciones {{protocol}}
+Content-Type: {{contentType}}
+Accept: {{contentType}}; version={{version}}
+ 
+{
+   "momento": "{{$datetime iso8601 1 y}}",
+   "valor": "{{$randomInt 19 37}}.{{$randomInt 0 10}}",
+   "unidad": "ºC"
+}
+
+### DELETE
+DELETE http://{{host}}/sensores/{{sensorId}} {{protocol}}
+Accept: {{contentType}}; version={{version}}
+ 
+
+### DELETE
+DELETE http://{{host}}/sensores/{{sensorId}}/{{medicionid}} {{protocol}}
+Accept: {{contentType}}; version={{version}}
+
+### GET Lee la medicion id del sensor sensor con id = sensorId
+GET http://{{host}}/sensores/{{sensorId}}/mediciones/{{medicionid}} {{protocol}}
+Accept: {{contentType}}; version={{version}}
+
+
+
+
+###
+GET http://{{host}}/sensores/{{sensorId}}/mediciones {{protocol}}
+Accept: {{contentType}}; version={{version}}
+###
+
+### 
+PUT http://{{host}}/sensores/{{sensorId}} {{protocol}}
+Content-Type: {{contentType}}
+Accept: {{contentType}}; version={{version}}
+
+{
+   "nombre": "Sensor de Temperatura ACTUALIZADO - UAO - Acasias"
+}
+### 
+PUT http://{{host}}/sensores/{{sensorId}}/mediciones/{{medicionid}} {{protocol}}
+Content-Type: {{contentType}}
+Accept: {{contentType}}; version={{version}}
+
+{
+   "momento": "{{$datetime iso8601 1 y}}",
+   "valor": "{{$randomInt 19 37}}.{{$randomInt 0 10}}",
+   "unidad": "ºC"
+}
